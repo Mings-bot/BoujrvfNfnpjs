@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Effect</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 10;
+        }
+        .typing-text {
+            font-size: 24px;
+            white-space: pre-wrap;
+            border-right: 2px solid black;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="typing-text" id="text"></div>
+
+    <script>
+        const text = "Hello everyone! It's been a while since my last iceberg video (Super Mario Sunshine), so I thought I'd give it another go with a really well put together Luigi's Mansion one that I found on IcebergCharts.";
+        let index = 0;
+
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, 50); // Adjust the speed by changing the number
+            }
+        }
+
+        window.onload = typeEffect;
+    </script>
+</body>
+</html>
