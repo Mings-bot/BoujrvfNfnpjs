@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Effect</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 10px;
+        }
+        .typing-text {
+            font-size: 24px;
+            white-space: pre-wrap;
+            border-right: 2px solid black;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="typing-text" id="text"></div>
+
+    <script>
+        const text = "Hello everyone! esse é o teste da pagina 2";
+        let index = 0;
+
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, 50); // Adjust the speed by changing the number
+            }
+        }
+
+        window.onload = typeEffect;
+    </script>
+</body>
+</html>
