@@ -12,7 +12,7 @@
             height: 100vh;
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
-            margin: 10px;
+            margin: 0;
         }
         .typing-text {
             font-size: 24px;
@@ -26,7 +26,7 @@
     <div class="typing-text" id="text"></div>
 
     <script>
-        const text = "Hello everyone! esse é o teste da pagina 2";
+        const text = "Vou lhe contar um conto. Um certo homem vivia o auge de sua vida, possuía uma família e era bem sucedido em seu ofício. Por onde andava, o homem era visto com alegria e felicidade, era como se o rapaz nunca tivesse experimentado do amargo da vida. A sua esposa era tão feliz quanto o homem e não havia um dia em que eles não criassem uma memória nova para recordar. De tanta felicidade, surgiu uma semente, o casal ficou tão contente que não conseguiam se contar, espalharam para todos que podiam as boas novas. Infelizmente, a semente estava consumindo muito da moça e, em um dia inesperado, ela germinou. O casal tentou de tudo o possível, mas a moça não sobreviveu. O homem tinha experienciado a sua primeira perda. O homem lamentava a perda de sua esposa, mas suportou a tristeza e foi um bom pai para a sua filha. Anos se passaram e o homem parecia ter retornado a alegria de antes. Um dia ele estava trabalhando em um projeto pessoal quando recebeu notícias terríveis, sua filha tinha sido sequestrada por maníacos. Desesperado, ele a procurou, mas encontrou apenas seu corpo sacrificado. O homem tinha experienciado a sua segunda perda. A partir desse ponto, o homem não se aguentou e buscou qualquer forma de reencontrar a sua felicidade e alegria, ele procurou o possível e o impossível. Ele invadiu o domínio que dita o real e o irreal, tentou materializar a sua vontade, mas foi seduzido pelo grito ensurdecedor de seus próprios desejos. Entregou-se de corpo e mente, agora servindo como receptáculo de —. O homem tinha experienciado a sua terceira perda.";
         let index = 0;
 
         function typeEffect() {
@@ -37,7 +37,33 @@
             }
         }
 
-        window.onload = typeEffect;
+        async function checkVisitor() {
+            try {
+                // Obtém o IP do visitante usando uma API pública
+                const response = await fetch('https://api64.ipify.org/?format=json');
+                const data = await response.json();
+                const userIP = data.ip;
+
+                // Verifica se o IP já está registrado no localStorage
+                let accessedIPs = JSON.parse(localStorage.getItem('accessedIPs')) || [];
+
+                if (accessedIPs.includes(userIP)) {
+                    // Redireciona caso o IP já tenha acessado
+                    window.location.href = 'pagina3.html';
+                } else {
+                    // Armazena o IP no localStorage
+                    accessedIPs.push(userIP);
+                    localStorage.setItem('accessedIPs', JSON.stringify(accessedIPs));
+                }
+            } catch (error) {
+                console.error('Erro ao verificar o IP do visitante:', error);
+            }
+        }
+
+        window.onload = () => {
+            checkVisitor();
+            typeEffect();
+        };
     </script>
 </body>
 </html>
